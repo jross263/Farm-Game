@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour {
   [SerializeField] private float rotationAmount;
   [SerializeField] private Vector3 zoomAmount;
 
-  private Vector3 newPosition;
+  private Vector3 newPosition;//Hello
   private Quaternion newRotation;
   private Vector3 newZoom;
 
