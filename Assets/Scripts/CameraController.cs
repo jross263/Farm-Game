@@ -33,6 +33,7 @@ public class CameraController : MonoBehaviour {
     newPosition = _transform.position;
     newRotation = _transform.rotation;
     newZoom = cameraTransform.localPosition;
+    GameEvents.current.OnCameraFocus += OnCameraFocus;
   }
 
   private void Update() {
@@ -102,5 +103,12 @@ public class CameraController : MonoBehaviour {
     if (plane.Raycast(ray, out float entry)) {
       position = ray.GetPoint(entry);
     }
+  }
+
+  private void OnCameraFocus(Vector3 position, float offset) {
+    newZoom.y = 5;
+    newZoom.z = -5;
+    newPosition = new Vector3(position.x, _transform.position.y, position.z - offset);; 
+    newRotation *= Quaternion.Euler(0, -newRotation.eulerAngles.y, 0);
   }
 }
